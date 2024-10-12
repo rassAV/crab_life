@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://duowima1jk8er"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_h4pre"]
+[ext_resource type="Texture2D" uid="uid://bf3jed8nx322n" path="res://assets/sprites/headcrab_death.png" id="2_w8cjv"]
+[ext_resource type="Script" path="res://scripts/player_animated_sprite.gd" id="3_4du0s"]
+[ext_resource type="Texture2D" uid="uid://cvuhxi6i46btq" path="res://assets/sprites/headcrab_idle.png" id="3_hise2"]
+[ext_resource type="Shape2D" uid="uid://cv6ompdbeha0m" path="res://resources/collisionShapes/headcrab_collision_shape.tres" id="3_j7k30"]
+[ext_resource type="Texture2D" uid="uid://cixpc3v4i4syt" path="res://assets/sprites/headcrab_jump.png" id="4_1qhl1"]
+[ext_resource type="Texture2D" uid="uid://en8kc57f77rp" path="res://assets/sprites/headcrab_run_1.png" id="5_gvt5m"]
+[ext_resource type="Texture2D" uid="uid://bm70btujrvhbe" path="res://assets/sprites/headcrab_run_2.png" id="6_xkjfd"]
+[ext_resource type="Texture2D" uid="uid://c6iaiskeq0cou" path="res://assets/sprites/headcrab_slide.png" id="7_2lpkt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jwkcx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w8cjv")
+}],
+"loop": true,
+"name": &"default_death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hise2")
+}],
+"loop": true,
+"name": &"default_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1qhl1")
+}],
+"loop": true,
+"name": &"default_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_gvt5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xkjfd")
+}],
+"loop": true,
+"name": &"default_run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2lpkt")
+}],
+"loop": true,
+"name": &"default_slide",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 6
+script = ExtResource("1_h4pre")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jwkcx")
+animation = &"default_death"
+script = ExtResource("3_4du0s")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="AreaCollisionShape" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.5, 3.5)
+shape = ExtResource("3_j7k30")
+
+[node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 3)
+shape = ExtResource("3_j7k30")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
