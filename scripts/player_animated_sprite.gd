@@ -2,7 +2,6 @@ extends AnimatedSprite2D
 
 class_name PlayerAnimatedSprite
 
-var frame_count = 0
 func trigger_animation(velocity: Vector2, direction: float, player_mode: Player.PlayerMode):
 	var animation_prefix = Player.PlayerMode.keys()[player_mode].to_snake_case()
 	

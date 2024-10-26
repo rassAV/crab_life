@@ -62,7 +62,8 @@ script = ExtResource("1_h4pre")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jwkcx")
-animation = &"default_death"
+animation = &"default_idle"
+autoplay = "default_idle"
 script = ExtResource("3_4du0s")
 
 [node name="Area2D" type="Area2D" parent="."]

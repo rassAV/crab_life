@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://bqga54noswers"]
+
+[ext_resource type="Script" path="res://scripts/bullsquid.gd" id="1_otv1m"]
+[ext_resource type="Texture2D" uid="uid://da4btchv68rkc" path="res://assets/sprites/bullsquid_idle.png" id="1_v4s8r"]
+[ext_resource type="Texture2D" uid="uid://pr2fciaf6bdj" path="res://assets/sprites/bullsquid_run_1.png" id="2_483pd"]
+[ext_resource type="Texture2D" uid="uid://c77tkey0yl5rt" path="res://assets/sprites/bullsquid_run_2.png" id="3_unsoe"]
+[ext_resource type="Texture2D" uid="uid://ceqtwd10symy6" path="res://assets/sprites/bullsquid_run_3.png" id="4_p588h"]
+[ext_resource type="Texture2D" uid="uid://dt0nici2inynr" path="res://assets/sprites/bullsquid_run_4.png" id="5_32jp8"]
+[ext_resource type="Texture2D" uid="uid://7kpq52gjjqfy" path="res://assets/sprites/bullsquid_stunned.png" id="6_wo884"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mfu5l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v4s8r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_483pd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_unsoe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_p588h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_32jp8")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wo884")
+}],
+"loop": true,
+"name": &"stunned",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgoqy"]
+size = Vector2(16, 16)
+
+[node name="Bullsquid" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_otv1m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mfu5l")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bgoqy")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 8)
+collision_mask = 18
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="RayCast2Dforward" type="RayCast2D" parent="."]
+target_position = Vector2(-13, 0)
+collision_mask = 18

@@ -25,14 +25,18 @@ const POINTS_LABEL_SCENE = preload("res://scenes/points_label.tscn")
 
 @export_group("Stomping enemies")
 @export var min_stomp_degree = 35
-@export var max_stomp_degree = 145
+@export var max_stomp_degree = 180
 @export var stomp_y_velocity = -150
+@export_group("")
+
+@export_group("Camera sync")
+@export var camera_sync: Camera2D
 @export_group("")
 
 var player_mode = PlayerMode.DEFAULT
 var is_dead = false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -49,6 +53,16 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func _process(delta) -> void: 
+	if global_position.x > camera_sync.global_position.x + 6:
+		camera_sync.global_position.x = global_position.x - 6
+	if global_position.x < camera_sync.global_position.x - 6:
+		camera_sync.global_position.x = global_position.x + 6
+	if global_position.y > camera_sync.global_position.y + 6:
+		camera_sync.global_position.y = global_position.y - 6
+	if global_position.y < camera_sync.global_position.y - 6:
+		camera_sync.global_position.y = global_position.y + 6
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area is Enemy:
 		handle_enemy_collision(area)
@@ -60,9 +74,13 @@ func handle_enemy_collision(enemy: Enemy):
 	var angle_of_collision = rad_to_deg(position.angle_to_point(enemy.position))
 		
 	if angle_of_collision > min_stomp_degree && max_stomp_degree > angle_of_collision:
-		enemy.die()
-		on_enemy_stomped()
-		spawn_points_label(enemy)
+		if is_instance_of(enemy, Snark):
+			enemy.die()
+			on_enemy_stomped()
+			spawn_points_label(enemy)
+		if is_instance_of(enemy, Bullsquid):
+			enemy.stunned()
+			on_enemy_stomped()
 	else:
 		die()
 

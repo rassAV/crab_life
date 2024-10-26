@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bo2tidjcg0bmv"]
+[gd_scene load_steps=14 format=3 uid="uid://bo2tidjcg0bmv"]
 
 [ext_resource type="Texture2D" uid="uid://px0dhapxjo5" path="res://assets/sprites/edge.png" id="1_s20vj"]
 [ext_resource type="Texture2D" uid="uid://fhrwcqlgxsry" path="res://assets/sprites/floor_down.png" id="2_t4a1v"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cq8wmngq516eb" path="res://assets/sprites/wall_line.png" id="5_ruxoy"]
 [ext_resource type="PackedScene" uid="uid://duowima1jk8er" path="res://scenes/player.tscn" id="6_r82tl"]
 [ext_resource type="PackedScene" uid="uid://cei47ws5fkr73" path="res://scenes/snark.tscn" id="7_dokj3"]
-[ext_resource type="PackedScene" uid="uid://bqga54noswers" path="res://scenes/bullsquid.tscn" id="8_udlwi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_plt0t"]
 texture = ExtResource("1_s20vj")
@@ -56,10 +55,7 @@ camera_sync = NodePath("../Camera2D")
 [node name="enemies" type="Node" parent="."]
 
 [node name="Snark" parent="enemies" instance=ExtResource("7_dokj3")]
-position = Vector2(9, -11)
+position = Vector2(35, -12)
 
 [node name="Snark2" parent="enemies" instance=ExtResource("7_dokj3")]
-position = Vector2(45, -22)
-
-[node name="Bullsquid" parent="enemies" instance=ExtResource("8_udlwi")]
-position = Vector2(174, -8)
+position = Vector2(58, -12)
