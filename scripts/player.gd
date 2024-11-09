@@ -21,6 +21,7 @@ const POINTS_LABEL_SCENE = preload("res://scenes/points_label.tscn")
 @export var run_speed_damping = 0.5
 @export var speed = 600.0
 @export var jump_velocity = -350
+@export var down_velocity = 100
 @export_group("")
 
 @export_group("Stomping enemies")
@@ -35,6 +36,7 @@ const POINTS_LABEL_SCENE = preload("res://scenes/points_label.tscn")
 
 var player_mode = PlayerMode.DEFAULT
 var is_dead = false
+var is_falling_through = false
 
 func _physics_process(delta: float) -> void:	
 	if not is_on_floor():
@@ -42,6 +44,14 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
+
+	if Input.is_action_pressed("down") and is_on_floor() and not is_falling_through:
+		set_collision_mask_value(8, false)
+		velocity.y = down_velocity
+		is_falling_through = true
+	elif is_falling_through:
+		set_collision_mask_value(8, true)
+		is_falling_through = false
 
 	var direction := Input.get_axis("left", "right")
 	if direction:

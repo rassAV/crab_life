@@ -2,9 +2,11 @@ extends Enemy
 
 class_name Bullsquid
 
-@onready var player = get_node("/root/main/Player")
+@onready var player = $"../../Player"
 
 var is_stunned = false
+var agr_distance = 100
+var last_direction: bool
 
 func _ready() -> void:
 	horizontal_speed = 40
@@ -22,17 +24,19 @@ func _process(delta):
 	if player:
 		var direction = (player.position - position).normalized()
 		var distance_to_player = position.distance_to(player.position)
+		var current_direction = direction.x > 0
 		
-		if distance_to_player < 1000:
-			if ray_cast_2d_forward.is_colliding():
+		if distance_to_player < agr_distance:
+			if ray_cast_2d_forward.is_colliding() and last_direction == current_direction:
+				last_direction = current_direction
 				animated_sprite_2d.play("idle") 
 			else:
-				if direction.x > 0:
+				if current_direction:
 					position.x += delta * horizontal_speed
-					animated_sprite_2d.scale.x = 1
-				elif direction.x < 0:
-					position.x -= delta * horizontal_speed
 					animated_sprite_2d.scale.x = -1
+				else:
+					position.x -= delta * horizontal_speed
+					animated_sprite_2d.scale.x = 1
 				animated_sprite_2d.play("run")
 		else:
 			animated_sprite_2d.play("idle")

@@ -45,7 +45,7 @@ shape = SubResource("RectangleShape2D_55vke")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 8)
-collision_mask = 18
+collision_mask = 146
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, 4)

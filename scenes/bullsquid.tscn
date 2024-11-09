@@ -45,25 +45,29 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bgoqy"]
-size = Vector2(16, 16)
+size = Vector2(30, 13)
 
 [node name="Bullsquid" type="Area2D"]
 collision_layer = 4
 script = ExtResource("1_otv1m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_mfu5l")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_bgoqy")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 8)
-collision_mask = 18
+collision_mask = 146
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.5, 0)
+scale = Vector2(2.15, 1)
 
 [node name="RayCast2Dforward" type="RayCast2D" parent="."]
-target_position = Vector2(-13, 0)
+target_position = Vector2(-22, 0)
 collision_mask = 18
