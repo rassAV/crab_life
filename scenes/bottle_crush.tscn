@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctd0jrr3tm3se"]
+
+[ext_resource type="Texture2D" uid="uid://dci4g42fyoiqi" path="res://assets/sprites/bottle_crush.png" id="1_542ix"]
+[ext_resource type="PackedScene" uid="uid://du4q0706ogxg6" path="res://scenes/transparent_platform.tscn" id="1_yyp01"]
+
+[node name="BottleCrush" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_542ix")
+
+[node name="TransparentPlatform" parent="." instance=ExtResource("1_yyp01")]
+position = Vector2(2, 1)

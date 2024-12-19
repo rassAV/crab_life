@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bulkvv7ym14mn"]
+
+[ext_resource type="Script" path="res://scripts/danger_zone.gd" id="1_ko4gg"]
+[ext_resource type="Texture2D" uid="uid://belqvrmpqfjmy" path="res://assets/sprites/fire_1.png" id="2_iiwcd"]
+[ext_resource type="Texture2D" uid="uid://coqsgssydj4jh" path="res://assets/sprites/fire_2.png" id="3_gotte"]
+[ext_resource type="Texture2D" uid="uid://bb1gnbvuxgi53" path="res://assets/sprites/fire_3.png" id="4_sq2j6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bcjj8"]
+size = Vector2(15, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_86g8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_iiwcd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gotte")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sq2j6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Fire" type="Area2D"]
+collision_layer = 64
+script = ExtResource("1_ko4gg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_bcjj8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_86g8f")
+speed_scale = 2.0

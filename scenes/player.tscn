@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://duowima1jk8er"]
+[gd_scene load_steps=21 format=3 uid="uid://duowima1jk8er"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_h4pre"]
 [ext_resource type="Texture2D" uid="uid://bf3jed8nx322n" path="res://assets/sprites/headcrab_death.png" id="2_w8cjv"]
@@ -9,6 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://en8kc57f77rp" path="res://assets/sprites/headcrab_run_1.png" id="5_gvt5m"]
 [ext_resource type="Texture2D" uid="uid://bm70btujrvhbe" path="res://assets/sprites/headcrab_run_2.png" id="6_xkjfd"]
 [ext_resource type="Texture2D" uid="uid://c6iaiskeq0cou" path="res://assets/sprites/headcrab_slide.png" id="7_2lpkt"]
+[ext_resource type="Texture2D" uid="uid://bo11ths8kiyph" path="res://assets/sprites/headcrab_to_zombie_1.png" id="8_0o5yk"]
+[ext_resource type="Texture2D" uid="uid://c775w2jdgv1ig" path="res://assets/sprites/headcrab_to_zombie_2.png" id="9_ewbhf"]
+[ext_resource type="Texture2D" uid="uid://di61wakfucu75" path="res://assets/sprites/zombie_attack_1.png" id="10_0x033"]
+[ext_resource type="Texture2D" uid="uid://b8frhc8bmidp1" path="res://assets/sprites/zombie_idle.png" id="10_hjkcf"]
+[ext_resource type="Texture2D" uid="uid://d0eryvd62vh5o" path="res://assets/sprites/zombie_jump.png" id="11_231pp"]
+[ext_resource type="Texture2D" uid="uid://br3x45ks563v3" path="res://assets/sprites/zombie_attack_2.png" id="11_ok5mq"]
+[ext_resource type="Texture2D" uid="uid://b7nhiboyogc8l" path="res://assets/sprites/zombie_run_1.png" id="12_sr24d"]
+[ext_resource type="Texture2D" uid="uid://dmp03k20lessc" path="res://assets/sprites/zombie_run_2.png" id="13_mrdw4"]
+[ext_resource type="Texture2D" uid="uid://b16f8lly1jdsu" path="res://assets/sprites/zombie_slide.png" id="14_n5sfs"]
+[ext_resource type="Shape2D" uid="uid://b4h00c0ja01gh" path="res://resources/collisionShapes/zombie_attack_collision_shape.tres" id="17_yvm3v"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jwkcx"]
 animations = [{
@@ -17,7 +27,7 @@ animations = [{
 "texture": ExtResource("2_w8cjv")
 }],
 "loop": true,
-"name": &"default_death",
+"name": &"headcrab_death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -25,7 +35,7 @@ animations = [{
 "texture": ExtResource("3_hise2")
 }],
 "loop": true,
-"name": &"default_idle",
+"name": &"headcrab_idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -33,7 +43,7 @@ animations = [{
 "texture": ExtResource("4_1qhl1")
 }],
 "loop": true,
-"name": &"default_jump",
+"name": &"headcrab_jump",
 "speed": 5.0
 }, {
 "frames": [{
@@ -44,7 +54,7 @@ animations = [{
 "texture": ExtResource("6_xkjfd")
 }],
 "loop": true,
-"name": &"default_run",
+"name": &"headcrab_run",
 "speed": 5.0
 }, {
 "frames": [{
@@ -52,29 +62,106 @@ animations = [{
 "texture": ExtResource("7_2lpkt")
 }],
 "loop": true,
-"name": &"default_slide",
+"name": &"headcrab_slide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_0o5yk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ewbhf")
+}],
+"loop": true,
+"name": &"headcrab_to_zombie",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_0x033")
+}],
+"loop": true,
+"name": &"zombie_attack_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_ok5mq")
+}],
+"loop": true,
+"name": &"zombie_attack_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_hjkcf")
+}],
+"loop": true,
+"name": &"zombie_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_231pp")
+}],
+"loop": true,
+"name": &"zombie_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_sr24d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_mrdw4")
+}],
+"loop": true,
+"name": &"zombie_run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_n5sfs")
+}],
+"loop": true,
+"name": &"zombie_slide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_n5sfs")
+}],
+"loop": true,
+"name": &"zombie_to_headcrab",
 "speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 130
+collision_mask = 242
 script = ExtResource("1_h4pre")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jwkcx")
-animation = &"default_idle"
-autoplay = "default_idle"
+animation = &"zombie_idle"
+autoplay = "headcrab_idle"
 script = ExtResource("3_4du0s")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_mask = 4
+collision_mask = 244
 
 [node name="AreaCollisionShape" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.5, 3.5)
+position = Vector2(-2, 4)
 shape = ExtResource("3_j7k30")
 
 [node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 3)
+position = Vector2(-2, 4)
 shape = ExtResource("3_j7k30")
+
+[node name="AttackArea2D" type="Area2D" parent="."]
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2D"]
+position = Vector2(17, 8)
+shape = ExtResource("17_yvm3v")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

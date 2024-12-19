@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://cskgedigg20i6"]
+
+[ext_resource type="Texture2D" uid="uid://qm5h5a7lk3be" path="res://assets/sprites/portal_1.png" id="1_hgebm"]
+[ext_resource type="Script" path="res://scripts/portal.gd" id="1_robr7"]
+[ext_resource type="Texture2D" uid="uid://bxq2oxh0xysr2" path="res://assets/sprites/portal_2.png" id="2_t21v8"]
+[ext_resource type="Texture2D" uid="uid://cxjgt3amlggtu" path="res://assets/sprites/portal_3.png" id="3_vj3pv"]
+[ext_resource type="Shape2D" uid="uid://thdhmgy1dmbo" path="res://resources/collisionShapes/portal.tres" id="5_ewao7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2lap8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hgebm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_t21v8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vj3pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_t21v8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Portal" type="Area2D"]
+collision_layer = 32
+script = ExtResource("1_robr7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2lap8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = ExtResource("5_ewao7")

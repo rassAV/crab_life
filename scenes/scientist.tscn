@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://7kl5jauhevjk"]
+
+[ext_resource type="Script" path="res://scripts/scientist.gd" id="1_4y1i4"]
+[ext_resource type="Texture2D" uid="uid://bsbqnktned6lb" path="res://assets/sprites/scientist_attack_1.png" id="1_h0rao"]
+[ext_resource type="Texture2D" uid="uid://bucbbpm6w0yc4" path="res://assets/sprites/scientist_attack_2.png" id="2_cfrav"]
+[ext_resource type="Texture2D" uid="uid://hbckxrl4b0o" path="res://assets/sprites/scientist_idle.png" id="3_lhslw"]
+[ext_resource type="Texture2D" uid="uid://b1p2itert101y" path="res://assets/sprites/scientist_run_1.png" id="4_o3iwm"]
+[ext_resource type="Texture2D" uid="uid://dbu3gwg6ij3o5" path="res://assets/sprites/scientist_danger_1.png" id="4_wlxdw"]
+[ext_resource type="Texture2D" uid="uid://cwlurtv4umqh1" path="res://assets/sprites/scientist_run_2.png" id="5_30wx4"]
+[ext_resource type="Texture2D" uid="uid://bswljeoo5c4fj" path="res://assets/sprites/scientist_danger_2.png" id="5_b8pyx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jiqru"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_h0rao")
+}],
+"loop": true,
+"name": &"attack_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cfrav")
+}],
+"loop": true,
+"name": &"attack_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_wlxdw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_b8pyx")
+}],
+"loop": true,
+"name": &"danger",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lhslw")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lhslw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_o3iwm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_30wx4")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2ado"]
+size = Vector2(10, 10)
+
+[node name="Scientist" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_4y1i4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jiqru")
+animation = &"attack_1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -18)
+shape = SubResource("RectangleShape2D_v2ado")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 32)
+collision_mask = 18
+
+[node name="RayCast2Dforward" type="RayCast2D" parent="."]
+position = Vector2(0, 20)
+target_position = Vector2(-17, 0)
+collision_mask = 18

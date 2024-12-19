@@ -27,7 +27,7 @@ func _process(delta):
 		var current_direction = direction.x > 0
 		
 		if distance_to_player < agr_distance:
-			if ray_cast_2d_forward.is_colliding() and last_direction == current_direction:
+			if (ray_cast_2d_forward.is_colliding() and last_direction == current_direction) or player.is_dead:
 				last_direction = current_direction
 				animated_sprite_2d.play("idle") 
 			else:

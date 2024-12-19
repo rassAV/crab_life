@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwqiuaxdlq5vl"]
+
+[ext_resource type="Texture2D" uid="uid://cyxarb03lmn3c" path="res://assets/sprites/bottle.png" id="1_6nm7v"]
+[ext_resource type="PackedScene" uid="uid://du4q0706ogxg6" path="res://scenes/transparent_platform.tscn" id="1_jy6fk"]
+
+[node name="Bottle" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6nm7v")
+
+[node name="TransparentPlatform" parent="." instance=ExtResource("1_jy6fk")]
+position = Vector2(1, -15)

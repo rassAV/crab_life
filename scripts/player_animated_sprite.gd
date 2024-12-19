@@ -2,6 +2,8 @@ extends AnimatedSprite2D
 
 class_name PlayerAnimatedSprite
 
+@onready var attack_collision = $"../AttackArea2D/CollisionShape2D"
+
 func trigger_animation(velocity: Vector2, direction: float, player_mode: Player.PlayerMode):
 	var animation_prefix = Player.PlayerMode.keys()[player_mode].to_snake_case()
 	
@@ -13,8 +15,10 @@ func trigger_animation(velocity: Vector2, direction: float, player_mode: Player.
 		scale.x = direction
 	else:
 		if scale.x == 1 && sign(velocity.x) == -1:
+			attack_collision.position.x = -21
 			scale.x = -1
 		elif scale.x == -1 && sign(velocity.x) == 1:
+			attack_collision.position.x = 17
 			scale.x = 1
 		
 		if velocity.x != 0:

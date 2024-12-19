@@ -15,6 +15,14 @@ animations = [{
 "texture": ExtResource("1_v4s8r")
 }],
 "loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v4s8r")
+}],
+"loop": true,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -54,7 +62,7 @@ script = ExtResource("1_otv1m")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_mfu5l")
-animation = &"idle"
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)
@@ -62,7 +70,7 @@ shape = SubResource("RectangleShape2D_bgoqy")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 8)
-collision_mask = 146
+collision_mask = 18
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-0.5, 0)

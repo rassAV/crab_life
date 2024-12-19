@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwif4hk1bv0u8"]
+
+[ext_resource type="Script" path="res://scripts/crashed_box.gd" id="1_r20cm"]
+[ext_resource type="Texture2D" uid="uid://bf0duwypg3i2i" path="res://assets/sprites/crashed_box.png" id="2_hnsyk"]
+[ext_resource type="Shape2D" uid="uid://xlhj17yp2xo4" path="res://resources/collisionShapes/crashed_box.tres" id="3_ntmp4"]
+
+[node name="CrashedBox" type="Area2D"]
+collision_layer = 18
+script = ExtResource("1_r20cm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hnsyk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = ExtResource("3_ntmp4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("3_ntmp4")
